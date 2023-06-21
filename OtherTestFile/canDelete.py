@@ -10,7 +10,7 @@
         Transport Hint: raw
         Unreliable: false
         Value: true
-        """
+"""
 
 
 def removeRobots(robotSet: set):

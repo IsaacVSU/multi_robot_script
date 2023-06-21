@@ -2,7 +2,7 @@ import rospy
 import os
 import shutil
 #deletes the entire thing from displays all the way down to Enalbled(Non inclusive)
-from deleteDisplays import deleteDisplays
+from OtherTestFile.deleteDisplays import deleteDisplays
 
 # from deleteDisplays import removeRobots
 
