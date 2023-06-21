@@ -78,9 +78,9 @@
       Line Width: 0.029999999329447746
       Name: Path
       Offset:
-          X: 0
-          Y: 0
-          Z: 0
+        X: 0
+        Y: 0
+        Z: 0
       Pose Color: 255; 85; 255
       Pose Style: None
       Queue Size: 10
@@ -102,9 +102,9 @@
       Line Width: 0.029999999329447746
       Name: Path
       Offset:
-          X: 0
-          Y: 0
-          Z: 0
+        X: 0
+        Y: 0
+        Z: 0
       Pose Color: 255; 255; 85
       Pose Style: None
       Queue Size: 10
