@@ -76,7 +76,7 @@ Visualization Manager:
       Use Fixed Frame: true
       Use rainbow: true
       Value: false
-      Class: rviz/Marker
+    - Class: rviz/Marker
       Enabled: true
       Marker Topic: /sekhmet/robot_marker
       Name: Marker
@@ -152,7 +152,7 @@ Visualization Manager:
       Topic: /sekhmet/navigation_manager/local_plan
       Unreliable: false
       Value: true
-      Class: rviz/MarkerArray
+    - Class: rviz/MarkerArray
       Enabled: true
       Marker Topic: /sekhmet/omnigraph/visuals
       Name: MarkerArray
@@ -176,7 +176,7 @@ Visualization Manager:
       Topic: /sekhmet/local_planner/carrot_goal
       Unreliable: false
       Value: true
-      Class: rviz/Marker
+    - Class: rviz/Marker
       Enabled: true
       Marker Topic: /sekhmet/local_planner/plan_debug
       Name: Marker
@@ -184,7 +184,7 @@ Visualization Manager:
         mppi_local_plan: true
       Queue Size: 100
       Value: true
-      Class: rviz/InteractiveMarkers
+    - Class: rviz/InteractiveMarkers
       Enable Transparency: true
       Enabled: true
       Name: InteractiveMarkers
