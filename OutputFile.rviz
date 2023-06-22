@@ -15,6 +15,7 @@ Panels:
       - /2D Pose Estimate1
       - /2D Nav Goal1
       - /Publish Point1
+      - /Team Tool1
     Name: Tool Properties
     Splitter Ratio: 0.5886790156364441
   - Class: rviz/Views
@@ -167,8 +168,158 @@ Visualization Manager:
           Topic: /sekhmet/local_planner/carrot_goal
           Unreliable: false
           Value: true
+        - Class: rviz/Marker
+          Enabled: true
+          Marker Topic: /sekhmet/local_planner/plan_debug
+          Name: Marker
+          Namespaces:
+            mppi_local_plan: true
+          Queue Size: 100
+          Value: true
       Enabled: true
       Name: sekhmetRobot
+    - Class: rviz/Group
+      Displays:
+        - Class: camera_plugins/CameraOverlay
+          Enabled: true
+          Image Topic: /osiris/camera/image_raw
+          Name: CameraOverlay
+          Overlay Alpha: 0.800000011920929
+          Overlay Scale: 0.5
+          Overlay x: 0
+          Overlay y: 0
+          Queue Size: 2
+          Transport Hint: raw
+          Unreliable: false
+          Value: true
+        - Alpha: 1
+          Autocompute Intensity Bounds: true
+          Autocompute Value Bounds:
+            Max Value: 10
+            Min Value: -10
+            Value: true
+          Axis: Z
+          Channel Name: intensity
+          Class: rviz/PointCloud2
+          Color: 255; 255; 255
+          Color Transformer: Intensity
+          Decay Time: 0
+          Enabled: true
+          Invert Rainbow: false
+          Max Color: 255; 255; 255
+          Min Color: 0; 0; 0
+          Name: PointCloud2
+          Position Transformer: XYZ
+          Queue Size: 10
+          Selectable: true
+          Size (Pixels): 3
+          Size (m): 0.009999999776482582
+          Style: Flat Squares
+          Topic: /osiris/lidar_points
+          Unreliable: false
+          Use Fixed Frame: true
+          Use rainbow: true
+          Value: true
+        - Class: rviz/Marker
+          Enabled: true
+          Marker Topic: /osiris/robot_marker
+          Name: Marker
+          Namespaces:
+            {}
+          Queue Size: 100
+          Value: true
+        - Alpha: 0.4000000059604645
+          Class: rviz/Map
+          Color Scheme: map
+          Draw Behind: false
+          Enabled: true
+          Name: Map
+          Topic: /osiris/point_cloud_cache/renderers/full_map
+          Unreliable: false
+          Use Timestamp: false
+          Value: true
+        - Alpha: 1
+          Buffer Length: 1
+          Class: rviz/Path
+          Color: 25; 255; 0
+          Enabled: true
+          Head Diameter: 0.30000001192092896
+          Head Length: 0.20000000298023224
+          Length: 0.30000001192092896
+          Line Style: Lines
+          Line Width: 0.029999999329447746
+          Name: Path
+          Offset:
+            X: 0
+            Y: 0
+            Z: 0
+          Pose Color: 255; 85; 255
+          Pose Style: None
+          Queue Size: 10
+          Radius: 0.029999999329447746
+          Shaft Diameter: 0.10000000149011612
+          Shaft Length: 0.10000000149011612
+          Topic: /osiris/navigation_manager/global_plan
+          Unreliable: false
+          Value: true
+        - Alpha: 1
+          Buffer Length: 1
+          Class: rviz/Path
+          Color: 25; 255; 0
+          Enabled: true
+          Head Diameter: 0.30000001192092896
+          Head Length: 0.20000000298023224
+          Length: 0.30000001192092896
+          Line Style: Lines
+          Line Width: 0.029999999329447746
+          Name: Path
+          Offset:
+            X: 0
+            Y: 0
+            Z: 0
+          Pose Color: 255; 255; 85
+          Pose Style: None
+          Queue Size: 10
+          Radius: 0.029999999329447746
+          Shaft Diameter: 0.10000000149011612
+          Shaft Length: 0.10000000149011612
+          Topic: /osiris/navigation_manager/local_plan
+          Unreliable: false
+          Value: true
+        - Class: rviz/MarkerArray
+          Enabled: true
+          Marker Topic: /osiris/omnigraph/visuals
+          Name: MarkerArray
+          Namespaces:
+            {}
+          Queue Size: 100
+          Value: true
+        - Alpha: 1
+          Axes Length: 1
+          Axes Radius: 0.10000000149011612
+          Class: rviz/Pose
+          Color: 255; 25; 0
+          Enabled: true
+          Head Length: 0.30000001192092896
+          Head Radius: 0.10000000149011612
+          Name: Pose
+          Queue Size: 10
+          Shaft Length: 1
+          Shaft Radius: 0.05000000074505806
+          Shape: Arrow
+          Topic: /osiris/local_planner/carrot_goal
+          Unreliable: false
+          Value: true
+        - Class: rviz/Marker
+          Enabled: true
+          Marker Topic: /osiris/local_planner/plan_debug
+          Name: Marker
+          Namespaces:
+            mppi_local_plan: true
+          Queue Size: 100
+          Value: true
+      Enabled: true
+      Name: osirisRobot
     - Alpha: 0.5
       Cell Size: 1
       Class: rviz/Grid

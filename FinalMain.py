@@ -27,8 +27,8 @@ parser.add_argument('--out', metavar="OutPutFile", default='OutputFile.rviz',
 
 args = parser.parse_args()
 
-print(args)
-print(args.main)
+# print(args)
+# print(args.main)
 
 def getPerRobot_Data():
     LinesUnderDisplay = []
@@ -46,7 +46,7 @@ Displays_Lines = getPerRobot_Data()[0]
 
 data = getPerRobot_Data()[1]
 data1 = data[0:Displays_Lines[0]]
-dataUnderDisplays = data[Displays_Lines[0] + 1::]
+dataUnderDisplays = data[Displays_Lines[0]:Displays_Lines[1]]
 data2 = data[Displays_Lines[1]::]
 
 class TemplateFile:
@@ -68,7 +68,7 @@ class TemplateFile:
             self.data[i] = self.template[i].replace('$robot', name)
 
 perRobotFile = TemplateFile()
-print(perRobotFile.lines)
+# print(perRobotFile.lines)
 
 with open(args.RobotNames.name) as f:
     x = f.readlines()
@@ -80,7 +80,12 @@ Robotnames = [e.strip() for e in x]
 outPutFile = []
 for name in Robotnames:
     perRobotFile.replaceRobotNames(name)
-    outPutFile.extend(perRobotFile.data)
+    outPutFile.append("    - Class: rviz/Group\n")
+    outPutFile.append("      Displays:\n")
+    for d in perRobotFile.data:
+        outPutFile.append(f"    {d}")
+    outPutFile.append("      Enabled: true\n")
+    outPutFile.append("      Name: {}Robot\n".format(name))
 
 with open(args.out.name, 'w') as fileW:
     data1 = "".join(data1)
@@ -91,3 +96,18 @@ with open(args.out.name, 'w') as fileW:
     fileW.write(outPutFile)
     fileW.write(dataUnderDisplays)
     fileW.write(data2)
+
+print("Data1")
+print(data1)
+print("--------")
+
+print("outPutFile")
+print(outPutFile)
+print("--------")
+
+print("Data under displays")
+print(dataUnderDisplays)
+print("--------")
+
+print("data2")
+print(data2)
