@@ -2,11 +2,10 @@
 - [x] Get the output file to work with RVIZ
 
 * w/o optional:
-python3 FinalMain.py <main file>.rviz <Robot Names>.txt <perRobot>.rviz
+  python3 FinalMain.py (main_file).rviz (Robot_Names).txt (per_Robot).rviz
 
 * w/ optional
-python3 FinalMain.py <main file>.rviz <Robot Names>.txt <perRobot>.rviz
---out <output file>.rviz
+  python3 FinalMain.py (main_file).rviz (Robot_Names).txt (per_Robot).rviz --out (output_file).rviz
 
 * Notes:
     * Default = OutputFile.rviz
