@@ -1,12 +1,8 @@
 import argparse
 """
 $robot
-1) Find and replace "$robot" with a robotName under displays
-2) For multiple robots, use the template file again
-3) NO HARD CODING
-4) 3 Inputs: main.rviz (main) and perRobot.rviz and RobotNames.txt
-        -> OutputFile.rviz
-5) Replace all the open with a inputFiles 
+ * Find and replace "$robot" with a robotName under displays
+ * TODO: replace robot with (arg robot)
 """
 parser = argparse.ArgumentParser(description= "Make an outPutFile from 3 inputs for rviz\
                                  Default is OutputFile.rviz")

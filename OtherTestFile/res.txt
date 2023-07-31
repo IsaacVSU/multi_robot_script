@@ -1,3 +1,0 @@
-Namespace(RobotNames=<_io.TextIOWrapper name='RobotNames.txt' mode='r' encoding='UTF-8'>, main=<_io.TextIOWrapper name='sekhmet.rviz' mode='r' encoding='UTF-8'>, perRobot=<_io.TextIOWrapper name='perRobot.rviz' mode='r' encoding='UTF-8'>)
-<_io.TextIOWrapper name='sekhmet.rviz' mode='r' encoding='UTF-8'>
-[2, 35, 42, 54, 89, 113, 118, 121, 137, 142]
