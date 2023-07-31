@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+
+import rospy
+
+def main():
+    name = rospy.get_param("~name", "")
+    input_file = rospy.get_param("~input_file", "")
+    output_file = rospy.get_param("~output_file", "")
+
+    rospy.loginfo(f"Converting $(arg name) to {name} from {input_file} and writing it to {output_file}")
+    with open(input_file, "r") as input:
+        with open(output_file, "w+") as output:
+            output.write(input.read().replace("$(arg name)", name))
+
+
+if __name__ == "__main__":
+    rospy.init_node("populate_name")
+    main()

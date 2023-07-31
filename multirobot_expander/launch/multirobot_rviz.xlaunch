@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+    <arg name="global_rviz"/>
+    <arg name="per_robot_rviz"/>
+    <arg name="output_rviz" default="/tmp/output.rviz"/>
+
+    <node pkg="multirobot_expander" type="multirobot_rviz_generator" name="multirobot_generator" output="screen">
+        <param name="global_rviz" value="$(arg global_rviz)"/>
+        <param name="per_robot_rviz" value="$(arg per_robot_rviz)"/>
+        <param name="output_rviz" value="$(arg output_rviz)"/>
+    </node>
+    
+    <!-- Sleep for 2 seconds then start up RVIZ -->
+    <node args="-d $(arg output_rviz)" name="rviz" pkg="rviz" type="rviz" respawn="true" launch-prefix="bash -c 'sleep 2; $0 $@' "/>
+</launch>

@@ -1,0 +1,80 @@
+#!/usr/bin/env python3
+import rospy
+
+def find_end(string, start_idx, to_find = 1):
+    end_idx = string.find(")", start_idx+1)
+    to_find += string.count("(",start_idx+1,end_idx)-1
+    if to_find == 0:
+        return end_idx
+    return find_end(string, end_idx, to_find)
+
+
+def getPerRobotData(main_rviz):
+    LinesUnderDisplay = []
+    with open(main_rviz) as f:
+        data = f.readlines()
+        for i, ii in enumerate(data):
+            if "Global Options:" in ii:
+                LinesUnderDisplay.append(i - 1)
+            if "Displays:" in ii:
+                LinesUnderDisplay.append(i + 1)
+        LinesUnderDisplay.pop(len(LinesUnderDisplay) - 1)
+    return LinesUnderDisplay, data
+
+
+class TemplateFile:
+    def __init__(self, per_robot_rviz):
+        with open(per_robot_rviz) as inp:
+            self.per_robot_string = inp.read()
+        self.replace_string = "$(arg robot)"
+        self.itr = 0
+
+    def _replaceRobotNames(self, name):
+        name_str = str(self.per_robot_string).replace(self.replace_string, name)
+        eval_idx = name_str.find("$(eval")
+        while eval_idx != -1:
+            end_idx = find_end(name_str, eval_idx+6)
+            exp = eval(name_str[eval_idx+6:end_idx].replace("itr", str(self.itr)))
+            name_str = name_str[:eval_idx] + str(exp) + name_str[end_idx+1:]
+            eval_idx = name_str.find("$(eval")
+        return name_str
+    
+    def createPerRobot(self, name):
+        out = "    - Class: rviz/Group\n      Displays:\n"
+        per_robot = self._replaceRobotNames(name)
+        out += "        " + per_robot.replace("\n", "\n        ")
+        out += f"\n      Enabled: true\n      Name: {name}\n"
+        self.itr += 1
+        return out
+        
+
+
+def main():
+    global_rviz = rospy.get_param("~global_rviz")
+    per_robot_rviz = rospy.get_param("~per_robot_rviz")
+    robots = rospy.get_param("~robots")
+    output_rviz = rospy.get_param("~output_rviz")
+
+    template = TemplateFile(per_robot_rviz)
+
+    Displays_Lines, data = getPerRobotData(global_rviz)
+    pre_options = data[0 : Displays_Lines[0]]
+    global_displays = data[Displays_Lines[0] : Displays_Lines[1]]
+    post_options = data[Displays_Lines[1] : :]
+    per_robot_lines = []
+
+    for name in robots:
+        if name == "none":
+            continue
+        per_robot_lines.append(template.createPerRobot(name))
+        
+    with open(output_rviz, "w") as fileW:
+        fileW.write("".join(pre_options))
+        fileW.write("".join(global_displays))
+        fileW.write("".join(per_robot_lines))
+        fileW.write("".join(post_options))
+
+
+if __name__ == "__main__":
+    rospy.init_node("populate_name")
+    main()
