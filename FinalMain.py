@@ -80,7 +80,7 @@ for name in Robotnames:
     outPutFile.append("      Displays:\n")
     for d in perRobotFile.data:
         outPutFile.append(f"    {d}")
-    outPutFile.append("      Enabled: true\n")
+    outPutFile.append("\n      Enabled: true\n")
     outPutFile.append("      Name: {}Robot\n".format(name))
 
 with open(args.out.name, 'w') as fileW:
